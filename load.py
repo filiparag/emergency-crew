@@ -3,6 +3,8 @@
 import matplotlib.pyplot as plt
 import csv
 
+sluzbe = 10
+
 def row_data(row, point_list):
 
     point_list['x'].append(float(row[2].replace(',', '.')))

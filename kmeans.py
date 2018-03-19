@@ -46,7 +46,7 @@ podaci = load.load()
 for key in podaci:
     
     data = np.array(podaci[key]['xy'])
-    kmeans = KMeans(n_clusters=4, random_state=10).fit(data)
+    kmeans = KMeans(n_clusters=load.sluzbe, random_state=10).fit(data)
     podaci[key]['centroids'] = kmeans.cluster_centers_
     podaci[key]['cluster'] = kmeans.labels_
 
@@ -80,13 +80,13 @@ hitna_centroid_sve = [
 ]
 
 
-kmeans_policija = KMeans(n_clusters=4, random_state=10).fit(policija_centroid_sve)
-kmeans_hitna = KMeans(n_clusters=4, random_state=10).fit(policija_centroid_sve)
+kmeans_policija = KMeans(n_clusters=load.sluzbe, random_state=10).fit(policija_centroid_sve)
+kmeans_hitna = KMeans(n_clusters=load.sluzbe, random_state=10).fit(policija_centroid_sve)
 
 policija_centroid = kmeans_policija.cluster_centers_
 hitna_centroid = kmeans_hitna.cluster_centers_
 
-print(policija_centroid)
+# print(policija_centroid)
 
 
 # exit()
