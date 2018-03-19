@@ -51,18 +51,45 @@ for key in podaci:
     podaci[key]['cluster'] = kmeans.labels_
 
 
-policija_centroid = np.mean(np.array([
-        podaci['mat']['centroids'],
-        podaci['park']['centroids'],
-        podaci['jedVoz']['centroids']
-    ]), axis=0)
+# policija_centroid = np.mean(np.array([
+#         podaci['mat']['centroids'],
+#         podaci['park']['centroids'],
+#         podaci['jedVoz']['centroids']
+#     ]), axis=0)
 
-hitna_centroid = np.mean(np.array([
-        podaci['pov']['centroids'],
-        podaci['pog']['centroids'],
-        podaci['pes']['centroids'],
-        podaci['dvaVoz']['centroids']
-    ]), axis=0)
+# print(policija_centroid)
+
+# hitna_centroid = np.mean(np.array([
+#         podaci['pov']['centroids'],
+#         podaci['pog']['centroids'],
+#         podaci['pes']['centroids'],
+#         podaci['dvaVoz']['centroids']
+#     ]), axis=0)
+
+policija_centroid_sve = [
+    *podaci['mat']['centroids'],
+    *podaci['park']['centroids'],
+    *podaci['jedVoz']['centroids']
+    ]
+
+hitna_centroid_sve = [
+    *podaci['pov']['centroids'],
+    *podaci['pog']['centroids'],
+    *podaci['pes']['centroids'],
+    *podaci['dvaVoz']['centroids']
+]
+
+
+kmeans_policija = KMeans(n_clusters=4, random_state=10).fit(policija_centroid_sve)
+kmeans_hitna = KMeans(n_clusters=4, random_state=10).fit(policija_centroid_sve)
+
+policija_centroid = kmeans_policija.cluster_centers_
+hitna_centroid = kmeans_hitna.cluster_centers_
+
+print(policija_centroid)
+
+
+# exit()
 
 sve_nezgode = []
 for key in podaci:
