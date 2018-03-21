@@ -6,7 +6,4 @@ import React from 'react';
 
 import App from './components/App';
 
-render(
-  <App />,
-  document.body.appendChild(document.createElement('div')),
-);
+render(<App />, document.body.appendChild(document.createElement('div')));

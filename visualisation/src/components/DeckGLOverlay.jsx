@@ -1,13 +1,20 @@
 import React, { Component } from 'react';
-import DeckGL, {HexagonLayer} from 'deck.gl';
+import DeckGL, { HexagonLayer } from 'deck.gl';
 
 const LIGHT_SETTINGS = {
-  lightsPosition: [20.44051978167588, 44.80657971403727, 8000, 17.44051978167588, 49.80657971403727, 8000],
+  lightsPosition: [
+    20.44051978167588,
+    44.80657971403727,
+    8000,
+    17.44051978167588,
+    49.80657971403727,
+    8000,
+  ],
   ambientRatio: 0.4,
   diffuseRatio: 0.6,
   specularRatio: 0.2,
   lightsStrength: [0.8, 0.0, 0.8, 0.0],
-  numberOfLights: 2
+  numberOfLights: 2,
 };
 
 const colorRange = [
@@ -16,16 +23,16 @@ const colorRange = [
   [216, 254, 181],
   [254, 237, 177],
   [254, 173, 84],
-  [209, 55, 78]
+  [209, 55, 78],
 ];
 
-const elevationScale = {min: 1, max: 50};
+const elevationScale = { min: 1, max: 50 };
 
 const defaultProps = {
   radius: 50,
   upperPercentile: 100,
   lowerPercentile: 25,
-  coverage: .66
+  coverage: 0.66,
 };
 
 class DeckGLOverlay extends Component {
@@ -51,7 +58,7 @@ class DeckGLOverlay extends Component {
     this.startAnimationTimer = null;
     this.intervalTimer = null;
     this.state = {
-      elevationScale: elevationScale.min
+      elevationScale: elevationScale.min,
     };
 
     this._startAnimate = this._startAnimate.bind(this);
@@ -91,7 +98,7 @@ class DeckGLOverlay extends Component {
     if (this.state.elevationScale === elevationScale.max) {
       this._stopAnimate();
     } else {
-      this.setState({elevationScale: this.state.elevationScale + 1});
+      this.setState({ elevationScale: this.state.elevationScale + 1 });
     }
   }
 
@@ -100,9 +107,9 @@ class DeckGLOverlay extends Component {
     gl.depthFunc(gl.LEQUAL);
   }
 
-  _getColorValue = (points) => points[0][2]
+  _getColorValue = points => points[0][2];
 
-  _getPosition = (d) => d
+  _getPosition = d => d;
 
   render() {
     const { viewport, data, radius, coverage, upperPercentile } = this.props;
@@ -128,11 +135,16 @@ class DeckGLOverlay extends Component {
         colorRange,
         coverage,
         data,
-        
-      })
+      }),
     ];
 
-    return <DeckGL {...viewport} layers={layers} onWebGLInitialized={this._initialize}/>;
+    return (
+      <DeckGL
+        {...viewport}
+        layers={layers}
+        onWebGLInitialized={this._initialize}
+      />
+    );
   }
 }
 
