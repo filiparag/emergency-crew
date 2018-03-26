@@ -3,7 +3,7 @@
 import matplotlib.pyplot as plt
 import csv
 
-sluzbe = 15
+sluzbe = 30
 
 def row_data(row, point_list):
 
