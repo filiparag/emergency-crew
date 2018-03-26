@@ -3,7 +3,7 @@
 import matplotlib.pyplot as plt
 import csv
 
-sluzbe = 10
+sluzbe = 15
 
 def row_data(row, point_list):
 
@@ -71,7 +71,7 @@ def load():
         reader = csv.reader(f)
         index = 0
         for row in reader:
-            if index > 4000:
+            if index > 35000:
                 break
             index += 1
             

@@ -50,7 +50,6 @@ for key in podaci:
     podaci[key]['centroids'] = kmeans.cluster_centers_
     podaci[key]['cluster'] = kmeans.labels_
 
-
 # policija_centroid = np.mean(np.array([
 #         podaci['mat']['centroids'],
 #         podaci['park']['centroids'],
@@ -78,7 +77,6 @@ hitna_centroid_sve = [
     *podaci['pes']['centroids'],
     *podaci['dvaVoz']['centroids']
 ]
-
 
 kmeans_policija = KMeans(n_clusters=load.sluzbe, random_state=10).fit(policija_centroid_sve)
 kmeans_hitna = KMeans(n_clusters=load.sluzbe, random_state=10).fit(policija_centroid_sve)
@@ -145,22 +143,46 @@ print('Google Maps vreme i putanja', policija_gmaps_trajanja)
 # print(hitna_varijansa, hitna_max_duzina)
 # print(policija_varijansa, policija_max_duzina)
 
-# hitna_sve = []
-# for ind in range(len(sve_nezgode)):
-#     hitna_sve.append([sve_nezgode[ind][0], sve_nezgode[ind][1], sve_nezgode_cluster_hitna[ind]])
+hitna_sve = []
+for ind in range(len(sve_nezgode)):
+    hitna_sve.append([sve_nezgode[ind][0], sve_nezgode[ind][1], sve_nezgode_cluster_hitna[ind]])
 
-# with open("hitna.csv", "w") as f:
-#     writer = csv.writer(f)
-#     writer.writerows(hitna_sve)
+with open("hitna.csv", "w") as f:
+    writer = csv.writer(f)
+    writer.writerows([['LAT','LNG','CLS']])
+    writer.writerows(hitna_sve)
 
+hitna_cls = []
+for ind in range(len(hitna_centroid)):
+    hitna_cls.append([hitna_centroid[ind][0], hitna_centroid[ind][1], ind])
 
-# policija_sve = []
-# for ind in range(len(sve_nezgode)):
-#     policija_sve.append([sve_nezgode[ind][0], sve_nezgode[ind][1], sve_nezgode_cluster_policija[ind]])
+with open("hitna.cls.csv", "w") as f:
+    writer = csv.writer(f)
+    writer.writerows([['LAT','LNG','CLS']])
+    writer.writerows(hitna_cls)
 
-# with open("policija.csv", "w") as f:
-#     writer = csv.writer(f)
-#     writer.writerows(policija_sve)
+with open("hitna.csv", "w") as f:
+    writer = csv.writer(f)
+    writer.writerows([['LAT','LNG','CLS']])
+    writer.writerows(hitna_sve)
+
+policija_sve = []
+for ind in range(len(sve_nezgode)):
+    policija_sve.append([sve_nezgode[ind][0], sve_nezgode[ind][1], sve_nezgode_cluster_policija[ind]])
+
+policija_cls = []
+for ind in range(len(policija_centroid)):
+    policija_cls.append([policija_centroid[ind][0], policija_centroid[ind][1], ind])
+
+with open("policija.cls.csv", "w") as f:
+    writer = csv.writer(f)
+    writer.writerows([['LAT','LNG','CLS']])
+    writer.writerows(policija_cls)
+
+with open("policija.csv", "w") as f:
+    writer = csv.writer(f)
+    writer.writerows([['LAT','LNG','CLS']])
+    writer.writerows(policija_sve)
 
 # print(hitna_sve)
 
